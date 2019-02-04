@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "-update"
             landmarkType = "7">
          </BreakpointContent>
@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571005151.5653009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-setup:"
             landmarkType = "7">
          </BreakpointContent>
@@ -102,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571005151.5653009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-loadModels"
             landmarkType = "7">
          </BreakpointContent>
@@ -118,11 +118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "-update"
             landmarkType = "7">
          </BreakpointContent>
@@ -134,27 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-update"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "-draw:"
             landmarkType = "7">
          </BreakpointContent>
@@ -166,11 +150,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-draw:"
             landmarkType = "7">
          </BreakpointContent>
@@ -182,11 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-draw:"
             landmarkType = "7">
          </BreakpointContent>
@@ -198,11 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-draw:"
             landmarkType = "7">
          </BreakpointContent>
@@ -214,11 +198,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "-draw:"
             landmarkType = "7">
          </BreakpointContent>
@@ -230,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-draw:"
             landmarkType = "7">
          </BreakpointContent>
@@ -246,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571006087.175233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "-draw:"
             landmarkType = "7">
          </BreakpointContent>
@@ -262,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment1/Renderer.mm"
-            timestampString = "571000665.487568"
+            timestampString = "571005151.5653009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "-dealloc"
             landmarkType = "7">
          </BreakpointContent>

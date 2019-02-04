@@ -37,6 +37,10 @@ enum
     GLKMatrix3 normalMatrix;
 
     float rotAngle;
+    float yRotAngle;
+    float xRotAngle;
+    float yRot;
+    float xRot;
     char isRotating;
 
     float *vertices, *normals, *texCoords;
@@ -74,11 +78,15 @@ enum
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.numberOfTapsRequired = 2;
     [theView addGestureRecognizer:tapGesture];
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    [theView addGestureRecognizer:panGesture];
     _isRotating = true;
     
     if (![self setupShaders])
         return;
     rotAngle = 0.0f;
+    yRotAngle = 0.0f;
+    xRotAngle = 0.0f;
     isRotating = 1;
 
     glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
@@ -93,21 +101,49 @@ enum
     }
 }
 
+- (void)handlePanGesture:(UIPanGestureRecognizer *)sender {
+    NSLog(@"Panned");
+    if(!_isRotating) {
+        CGPoint initialCenter = CGPoint();  // The initial center point of the view.
+        CGPoint translatedPoint = [sender translationInView:sender.view.superview];
+
+        if(sender.state == UIGestureRecognizerStateChanged) {
+            translatedPoint = [sender translationInView:sender.view.superview];
+        }
+        yRot = translatedPoint.y;
+        xRot = translatedPoint.x;
+    }
+}
+
 - (void)update
 {
     auto currentTime = std::chrono::steady_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
+    // Perspective
+    mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
     
     if (_isRotating)
     {
         rotAngle += 0.001f * elapsedTime;
         if (rotAngle >= 360.0f)
             rotAngle = 0.0f;
+    } else {
+        yRotAngle += 0.001f * elapsedTime * yRot/ fabsf(yRot);
+        if (yRotAngle >= 360.0f) {
+            
+            yRotAngle = 0.0f;
+        } else if (yRotAngle <= 0.0f)
+            yRotAngle = 360.0f;
+        mvp = GLKMatrix4Rotate(mvp, yRotAngle, 1.0, 0.0, 1.0 );
+        xRotAngle += 0.001f * elapsedTime * xRot/ fabsf(xRot);
+        if (xRotAngle > 360.0f)
+            xRotAngle = 0.0f;
+        if (xRotAngle < 0.0f)
+            xRotAngle = 360.0f;
+        mvp = GLKMatrix4Rotate(mvp, xRotAngle, 0.0, 1.0, 1.0 );
     }
-
-    // Perspective
-    mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
+    
     mvp = GLKMatrix4Rotate(mvp, rotAngle, 1.0, 0.0, 1.0 );
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
