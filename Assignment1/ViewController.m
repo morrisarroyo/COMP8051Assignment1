@@ -10,14 +10,15 @@
 
 @interface ViewController() {
     Renderer *glesRenderer; // ###
+    __weak IBOutlet UILabel *displacement;
+    __weak IBOutlet UILabel *rotation;
 }
 @end
 
 
 @implementation ViewController
-
-- (IBAction)theButton:(id)sender {
-    NSLog(@"You pressed the Button!");
+- (IBAction)resetCube:(id)sender {
+    [glesRenderer resetCube];
 }
 
 - (void)viewDidLoad {
@@ -40,6 +41,8 @@
 - (void)update
 {
     [glesRenderer update]; // ###
+    displacement.text = [NSString stringWithFormat: @"Xd:%f Yd:%f Zd:%f", [glesRenderer getXDisplacement], [glesRenderer getYDisplacement], [glesRenderer getZDisplacement]];
+    rotation.text = [NSString stringWithFormat: @"Xr:%f Yr:%f Zd:%f", [glesRenderer getXRotationAngle], [glesRenderer getYRotationAngle], 0.0f];
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect

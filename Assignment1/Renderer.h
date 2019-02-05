@@ -12,7 +12,12 @@
 - (void)loadModels;
 - (void)update;
 - (void)draw:(CGRect)drawRect;
-
+- (void)resetCube;
+-(float)getXDisplacement;
+-(float)getYDisplacement;
+-(float)getZDisplacement;
+-(float)getXRotationAngle;
+-(float)getYRotationAngle;
 @end
 
 #endif /* Renderer_h */

@@ -35,7 +35,11 @@ enum
 
     GLKMatrix4 mvp;
     GLKMatrix3 normalMatrix;
-
+    float touchXInitial;
+    float touchYInitial;
+    float xDisplacement;
+    float yDisplacement;
+    float zDisplacement;
     float rotAngle;
     float yRotAngle;
     float xRotAngle;
@@ -47,7 +51,8 @@ enum
     int *indices, numIndices;
     
     
-    bool  _isRotating;
+    bool _isRotating;
+    bool _isFingerDragging;
 }
 
 @end
@@ -79,39 +84,120 @@ enum
     tapGesture.numberOfTapsRequired = 2;
     [theView addGestureRecognizer:tapGesture];
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    panGesture.maximumNumberOfTouches = 1;
     [theView addGestureRecognizer:panGesture];
-    _isRotating = true;
-    
+    UIPanGestureRecognizer *pan2FingerGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan2FingerGesture:)];
+    pan2FingerGesture.minimumNumberOfTouches = 2;
+    [theView addGestureRecognizer:pan2FingerGesture];
+    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
+    [theView addGestureRecognizer:pinchGesture];
     if (![self setupShaders])
         return;
+    xDisplacement = 0.0f;
+    yDisplacement = 0.0f;
+    zDisplacement = -5.0f;
     rotAngle = 0.0f;
     yRotAngle = 0.0f;
     xRotAngle = 0.0f;
     isRotating = 1;
 
+    _isRotating = true;
+    _isFingerDragging = false;
+    
     glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
     glEnable(GL_DEPTH_TEST);
     lastTime = std::chrono::steady_clock::now();
 }
+-(float)getXDisplacement {
+    return xDisplacement;
+}
+-(float)getYDisplacement {
+    return yDisplacement;
+}
+-(float)getZDisplacement {
+    return zDisplacement;
+}
+-(float)getXRotationAngle {
+    return xRotAngle;
+}
+-(float)getYRotationAngle {
+    return fmodf(rotAngle + yRotAngle, 360) ;
+}
+-(void)resetCube {
+    xDisplacement = 0.0f;
+    yDisplacement = 0.0f;
+    zDisplacement = -5.0f;
+    rotAngle = 0.0f;
+    yRotAngle = 0.0f;
+    xRotAngle = 0.0f;
+}
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateRecognized) {
-        NSLog(@"Double Tapped");
+        //NSLog(@"Double Tapped");
         _isRotating = !_isRotating;
     }
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender {
-    NSLog(@"Panned");
-    if(!_isRotating) {
-        CGPoint initialCenter = CGPoint();  // The initial center point of the view.
-        CGPoint translatedPoint = [sender translationInView:sender.view.superview];
-
-        if(sender.state == UIGestureRecognizerStateChanged) {
-            translatedPoint = [sender translationInView:sender.view.superview];
+    //NSLog(@"Panned");
+    if(sender.numberOfTouches == 1) {
+        if(!_isRotating) {
+            CGPoint initialCenter = CGPoint();  // The initial center point of the view.
+            CGPoint translatedPoint = [sender translationInView:sender.view.superview];
+            if(sender.state == UIGestureRecognizerStateBegan) {
+                _isFingerDragging = true;
+            }
+            if(sender.state == UIGestureRecognizerStateChanged) {
+                translatedPoint = [sender translationInView:sender.view.superview];
+                yRot = translatedPoint.y  - initialCenter.y;
+                xRot = translatedPoint.x  - initialCenter.x;
+            }
+            if(sender.state == UIGestureRecognizerStateEnded) {
+                translatedPoint = [sender translationInView:sender.view.superview];
+                _isFingerDragging = false;
+            }
         }
-        yRot = translatedPoint.y;
-        xRot = translatedPoint.x;
+    }
+}
+
+- (void)handlePan2FingerGesture:(UIPanGestureRecognizer *)sender {
+    if(!_isRotating) {
+       
+        if(sender.numberOfTouches == 2) {
+            NSLog(@" 2 Finger Panned");
+            CGPoint translatedPoint = [sender translationInView:sender.view.superview];
+        
+            if(sender.state == UIGestureRecognizerStateBegan) {
+                touchXInitial = translatedPoint.x;
+                touchYInitial = translatedPoint.y;
+            }
+            if(sender.state == UIGestureRecognizerStateChanged) {
+                translatedPoint = [sender translationInView:sender.view.superview];
+                xDisplacement += (translatedPoint.x  - touchXInitial) / 1000;
+                yDisplacement += -(translatedPoint.y  - touchYInitial) / 1000;
+            }
+            if(sender.state == UIGestureRecognizerStateEnded) {
+                
+            }
+        }
+    }
+}
+
+- (void)handlePinchGesture:(UIPinchGestureRecognizer *)sender {
+    if (!_isRotating)
+    {
+        NSLog(@"Double Pinched");
+        
+        if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
+            
+            zDisplacement *= 1/sender.scale;
+            if (zDisplacement > -3.0) {
+                zDisplacement = -3;
+            } else if (zDisplacement < -18.0 ){
+                zDisplacement = -18.0;
+            }
+        }
     }
 }
 
@@ -121,27 +207,29 @@ enum
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
     // Perspective
-    mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
-    
+    mvp = GLKMatrix4Translate(GLKMatrix4Identity, xDisplacement, yDisplacement, zDisplacement);
+    //NSLog(@"%f %f", xRot, yRot);
     if (_isRotating)
     {
         rotAngle += 0.001f * elapsedTime;
         if (rotAngle >= 360.0f)
             rotAngle = 0.0f;
     } else {
-        yRotAngle += 0.001f * elapsedTime * yRot/ fabsf(yRot);
-        if (yRotAngle >= 360.0f) {
-            
-            yRotAngle = 0.0f;
-        } else if (yRotAngle <= 0.0f)
-            yRotAngle = 360.0f;
-        mvp = GLKMatrix4Rotate(mvp, yRotAngle, 1.0, 0.0, 1.0 );
-        xRotAngle += 0.001f * elapsedTime * xRot/ fabsf(xRot);
-        if (xRotAngle > 360.0f)
-            xRotAngle = 0.0f;
-        if (xRotAngle < 0.0f)
-            xRotAngle = 360.0f;
-        mvp = GLKMatrix4Rotate(mvp, xRotAngle, 0.0, 1.0, 1.0 );
+        if (_isFingerDragging) {
+            yRotAngle += 0.001f * elapsedTime * yRot / 100;
+            if (yRotAngle >= 360.0f) {
+                yRotAngle = 0.0f;
+            } else if (yRotAngle <= 0.0f)
+                yRotAngle = 360.0f;
+            xRotAngle += 0.001f * elapsedTime * xRot / 100;
+            if (xRotAngle >= 360.0f)
+                xRotAngle = 0.0f;
+            else if (xRotAngle <= 0.0f)
+                xRotAngle = 360.0f;
+        }
+        
+        mvp = GLKMatrix4Rotate(mvp, xRotAngle, 0, 1, 0 );
+        mvp = GLKMatrix4Rotate(mvp, yRotAngle, 1, 0, 0 );
     }
     
     mvp = GLKMatrix4Rotate(mvp, rotAngle, 1.0, 0.0, 1.0 );
