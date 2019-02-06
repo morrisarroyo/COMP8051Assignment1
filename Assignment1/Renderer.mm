@@ -118,10 +118,10 @@ enum
     return zDisplacement;
 }
 -(float)getXRotationAngle {
-    return xRotAngle;
+    return fmodf(xRotAngle, 2 * M_PI)* (180 / M_PI);
 }
 -(float)getYRotationAngle {
-    return fmodf(rotAngle + yRotAngle, 360) ;
+    return fmodf(rotAngle + yRotAngle, 2 * M_PI) * (180 / M_PI);
 }
 -(void)resetCube {
     xDisplacement = 0.0f;
@@ -141,7 +141,7 @@ enum
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)sender {
     //NSLog(@"Panned");
-    if(sender.numberOfTouches == 1) {
+    if(sender.numberOfTouches <= 1) {
         if(!_isRotating) {
             CGPoint initialCenter = CGPoint();  // The initial center point of the view.
             CGPoint translatedPoint = [sender translationInView:sender.view.superview];
@@ -156,6 +156,8 @@ enum
             if(sender.state == UIGestureRecognizerStateEnded) {
                 translatedPoint = [sender translationInView:sender.view.superview];
                 _isFingerDragging = false;
+                xRot = 0.0f;
+                yRot = 0.0f;
             }
         }
     }
@@ -212,27 +214,30 @@ enum
     if (_isRotating)
     {
         rotAngle += 0.001f * elapsedTime;
-        if (rotAngle >= 360.0f)
+        if (rotAngle >= 2 * M_PI)
             rotAngle = 0.0f;
     } else {
         if (_isFingerDragging) {
             yRotAngle += 0.001f * elapsedTime * yRot / 100;
-            if (yRotAngle >= 360.0f) {
+            if (yRotAngle >= 2 * M_PI) {
                 yRotAngle = 0.0f;
             } else if (yRotAngle <= 0.0f)
-                yRotAngle = 360.0f;
+                yRotAngle = 2 * M_PI;
             xRotAngle += 0.001f * elapsedTime * xRot / 100;
-            if (xRotAngle >= 360.0f)
+            if (xRotAngle >= 2 * M_PI)
                 xRotAngle = 0.0f;
             else if (xRotAngle <= 0.0f)
-                xRotAngle = 360.0f;
+                xRotAngle = 2 * M_PI;
+            
         }
-        
-        mvp = GLKMatrix4Rotate(mvp, xRotAngle, 0, 1, 0 );
-        mvp = GLKMatrix4Rotate(mvp, yRotAngle, 1, 0, 0 );
     }
-    
-    mvp = GLKMatrix4Rotate(mvp, rotAngle, 1.0, 0.0, 1.0 );
+    NSLog(@"xRotAngle %2.1f yRotAngle %2.1f isRotating %d", xRotAngle, yRotAngle, _isRotating && _isFingerDragging);
+    NSLog(@"xRot %2.1f yRot %2.1f isRotating %d", xRot, yRot, _isRotating && _isFingerDragging);
+   
+    mvp = GLKMatrix4Rotate(mvp, yRotAngle, 1, 0, 0 );
+   
+    mvp = GLKMatrix4Rotate(mvp, xRotAngle, 0, 1, 0 );
+    mvp = GLKMatrix4Rotate(mvp, rotAngle, 0.0, 1.0, 0.0 );
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
     float aspect = (float)theView.drawableWidth / (float)theView.drawableHeight;

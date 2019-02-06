@@ -239,7 +239,6 @@
 				TargetAttributes = {
 					3FBF5619220522ED0028989F = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = N6RP3H788Z;
 					};
 					3FBF5632220522EE0028989F = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -473,6 +472,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = N6RP3H788Z;
 				INFOPLIST_FILE = Assignment1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bcit.Comp8082Assignment1;
@@ -485,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = N6RP3H788Z;
 				INFOPLIST_FILE = Assignment1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bcit.Comp8082Assignment1;

@@ -41,8 +41,8 @@
 - (void)update
 {
     [glesRenderer update]; // ###
-    displacement.text = [NSString stringWithFormat: @"Xd:%f Yd:%f Zd:%f", [glesRenderer getXDisplacement], [glesRenderer getYDisplacement], [glesRenderer getZDisplacement]];
-    rotation.text = [NSString stringWithFormat: @"Xr:%f Yr:%f Zd:%f", [glesRenderer getXRotationAngle], [glesRenderer getYRotationAngle], 0.0f];
+    displacement.text = [NSString stringWithFormat: @"Xd:%2.1f Yd:%2.1f Zd:%2.1f", [glesRenderer getXDisplacement], [glesRenderer getYDisplacement], [glesRenderer getZDisplacement]];
+    rotation.text = [NSString stringWithFormat: @"Xr:%2.1f Yr:%2.1f Zd:%2.1f", [glesRenderer getXRotationAngle], [glesRenderer getYRotationAngle], 0.0f];
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
