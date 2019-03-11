@@ -231,8 +231,8 @@ enum
             
         }
     }
-    NSLog(@"xRotAngle %2.1f yRotAngle %2.1f isRotating %d", xRotAngle, yRotAngle, _isRotating && _isFingerDragging);
-    NSLog(@"xRot %2.1f yRot %2.1f isRotating %d", xRot, yRot, _isRotating && _isFingerDragging);
+    //NSLog(@"xRotAngle %2.1f yRotAngle %2.1f isRotating %d", xRotAngle, yRotAngle, _isRotating && _isFingerDragging);
+    //NSLog(@"xRot %2.1f yRot %2.1f isRotating %d", xRot, yRot, _isRotating && _isFingerDragging);
    
     mvp = GLKMatrix4Rotate(mvp, yRotAngle, 1, 0, 0 );
    

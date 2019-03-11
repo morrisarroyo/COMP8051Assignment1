@@ -12,6 +12,8 @@
     Renderer *glesRenderer; // ###
     __weak IBOutlet UILabel *displacement;
     __weak IBOutlet UILabel *rotation;
+    __weak IBOutlet UILabel *languageLabel;
+    __weak IBOutlet UIButton *languageButton;
 }
 @end
 
@@ -27,8 +29,13 @@
     // ### <<<
     glesRenderer = [[Renderer alloc] init];
     GLKView *view = (GLKView *)self.view;
+    [view bringSubviewToFront:view];
     [glesRenderer setup:view];
     [glesRenderer loadModels];
+    mixTest = [[MixTest alloc] init];
+    [languageButton setTitle:[NSString stringWithFormat:@"%s","Increment ObjectiveC"] forState:UIControlStateNormal];
+    
+    [mixTest setUseObjC:YES];
     // ### >>>
 }
 
@@ -50,5 +57,18 @@
     [glesRenderer draw:rect]; // ###
 }
 
+- (IBAction)Increment:(id)sender {
+    if (mixTest.useObjC) {
+        [mixTest IncrementValue];
+        [languageLabel setText:[NSString stringWithFormat:@"Obj C value: %d", [mixTest val]]];
+        [languageButton setTitle:[NSString stringWithFormat:@"%s","Increment C++"] forState:UIControlStateNormal];
+        [mixTest setUseObjC:NO];
+    } else {
+        [mixTest IncrementValue];
+        [languageLabel setText:[NSString stringWithFormat:@"C++ value: %d", [mixTest val]]];
+        [languageButton setTitle:[NSString stringWithFormat:@"%s","Increment ObjectiveC"] forState:UIControlStateNormal];
+        [mixTest setUseObjC:YES];
+    }
+}
 
 @end

@@ -19,6 +19,8 @@
 		3FBF5638220522EE0028989F /* Assignment1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBF5637220522EE0028989F /* Assignment1Tests.m */; };
 		3FBF5643220522EE0028989F /* Assignment1UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBF5642220522EE0028989F /* Assignment1UITests.m */; };
 		3FBF565F220526FA0028989F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBF565E220526FA0028989F /* AppDelegate.m */; };
+		DDB89EB4220B6229000C7A36 /* CPlusPlus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB89EB0220B6228000C7A36 /* CPlusPlus.cpp */; };
+		DDB89EB5220B6229000C7A36 /* MixTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDB89EB3220B6229000C7A36 /* MixTest.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		3FBF5644220522EE0028989F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FBF565D220526FA0028989F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3FBF565E220526FA0028989F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DDB89EB0220B6228000C7A36 /* CPlusPlus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPlusPlus.cpp; sourceTree = "<group>"; };
+		DDB89EB1220B6228000C7A36 /* CPlusPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPlusPlus.h; sourceTree = "<group>"; };
+		DDB89EB2220B6229000C7A36 /* MixTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixTest.h; sourceTree = "<group>"; };
+		DDB89EB3220B6229000C7A36 /* MixTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MixTest.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,10 @@
 		3FBF561C220522ED0028989F /* Assignment1 */ = {
 			isa = PBXGroup;
 			children = (
+				DDB89EB0220B6228000C7A36 /* CPlusPlus.cpp */,
+				DDB89EB1220B6228000C7A36 /* CPlusPlus.h */,
+				DDB89EB2220B6229000C7A36 /* MixTest.h */,
+				DDB89EB3220B6229000C7A36 /* MixTest.mm */,
 				3F698FF92208C3A3001CE2B0 /* GLESRenderer.cpp */,
 				3F698FFA2208C3A3001CE2B0 /* GLESRenderer.hpp */,
 				3F698FFB2208C3A3001CE2B0 /* Renderer.h */,
@@ -305,10 +315,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F6990012208C3A3001CE2B0 /* GLESRenderer.cpp in Sources */,
+				DDB89EB5220B6229000C7A36 /* MixTest.mm in Sources */,
 				3FBF561F220522ED0028989F /* main.m in Sources */,
 				3F6990022208C3A3001CE2B0 /* Renderer.mm in Sources */,
 				3FBF565F220526FA0028989F /* AppDelegate.m in Sources */,
 				3F6990052208C3A3001CE2B0 /* ViewController.m in Sources */,
+				DDB89EB4220B6229000C7A36 /* CPlusPlus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -459,7 +471,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -472,7 +484,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = N6RP3H788Z;
+				DEVELOPMENT_TEAM = 6Y3A7AQ3G3;
 				INFOPLIST_FILE = Assignment1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bcit.Comp8082Assignment1;
@@ -485,7 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = N6RP3H788Z;
+				DEVELOPMENT_TEAM = 6Y3A7AQ3G3;
 				INFOPLIST_FILE = Assignment1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bcit.Comp8082Assignment1;

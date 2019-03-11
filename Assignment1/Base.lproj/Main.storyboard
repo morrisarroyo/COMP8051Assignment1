@@ -40,21 +40,41 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cpc-On-4NV">
+                                <rect key="frame" x="5" y="445" width="80" height="30"/>
+                                <state key="normal" title="Objective C"/>
+                                <connections>
+                                    <action selector="Increment:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pGB-V8-pTR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Obj C value: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cko-4Y-bOf">
+                                <rect key="frame" x="5" y="419" width="107" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Cko-4Y-bOf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="CjF-WF-6Pe"/>
                             <constraint firstItem="AGD-zq-99X" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="GmS-AG-php"/>
+                            <constraint firstItem="Cpc-On-4NV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="LyB-Nf-dzk"/>
                             <constraint firstItem="AGD-zq-99X" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="Mra-YO-3hA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cpc-On-4NV" secondAttribute="bottom" constant="5" id="N8H-FQ-S20"/>
                             <constraint firstItem="GTQ-Ah-BUP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="NIa-Un-WBn"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cpc-On-4NV" secondAttribute="bottom" constant="5" id="SKq-6U-Enw"/>
                             <constraint firstAttribute="trailing" secondItem="cy2-cf-eow" secondAttribute="trailing" constant="5" id="SM7-nb-2Uh"/>
                             <constraint firstAttribute="trailing" secondItem="AGD-zq-99X" secondAttribute="trailing" constant="5" id="dl0-F7-67m"/>
                             <constraint firstItem="GTQ-Ah-BUP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="jLa-cT-EtT"/>
                             <constraint firstItem="cy2-cf-eow" firstAttribute="top" secondItem="AGD-zq-99X" secondAttribute="bottom" id="k8f-A3-0bm"/>
                             <constraint firstAttribute="trailing" secondItem="AGD-zq-99X" secondAttribute="trailing" constant="5" id="ozO-RH-gLd"/>
+                            <constraint firstItem="Cpc-On-4NV" firstAttribute="top" secondItem="Cko-4Y-bOf" secondAttribute="bottom" constant="5" id="zSn-kh-8qp"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="displacement" destination="AGD-zq-99X" id="keP-nf-Bfj"/>
+                        <outlet property="languageButton" destination="Cpc-On-4NV" id="JBq-5a-m2n"/>
+                        <outlet property="languageLabel" destination="Cko-4Y-bOf" id="pIv-n0-Fo0"/>
                         <outlet property="rotation" destination="cy2-cf-eow" id="dPH-ps-Te2"/>
                     </connections>
                 </viewController>
